@@ -1,0 +1,876 @@
+/* ==========================================================================
+   Site-wide design tokens
+   Change colors, max content width, and other shared values here first.
+   ========================================================================== */
+:root {
+  --black: #050505;
+  --white: #ffffff;
+  --gray-100: #f7f7f7;
+  --gray-200: #e8e8e8;
+  --gray-500: #777777;
+  --gray-800: #222222;
+  --max-width: 1180px;
+}
+
+/* ==========================================================================
+   Global reset and base typography
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Shared layout helpers and reusable components
+   These classes are used by multiple homepage sections.
+   ========================================================================== */
+.section {
+  max-width: none;
+  padding: 110px 0;
+}
+
+.section > * {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section.muted {
+  background: var(--gray-100);
+}
+
+.section-header {
+  margin-bottom: 52px;
+}
+
+.section h2 {
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.grid {
+  display: grid;
+  gap: 22px;
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.eyebrow {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #a9a9a9;
+  margin-bottom: 20px;
+}
+
+.eyebrow.dark {
+  color: var(--gray-500);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.primary {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.secondary {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: var(--white);
+}
+
+.outline-button {
+  border: 1px solid var(--gray-200);
+  color: var(--black);
+  background: var(--white);
+}
+
+.dark-button {
+  background: var(--black);
+  color: var(--white);
+  margin-top: 24px;
+}
+
+.card {
+  border: 1px solid var(--gray-200);
+  border-radius: 24px;
+  padding: 30px;
+  background: var(--white);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+
+.card p {
+  font-size: 17px;
+  color: var(--gray-500);
+}
+
+/* ==========================================================================
+   Header and navigation
+   The mobile menu behavior is controlled in script.js.
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 26px;
+  font-size: 16px;
+}
+
+.nav-links a {
+  opacity: 0.78;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   HOME / Hero section
+   Change the first-screen text and hero image layout here.
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  padding: 140px 24px 80px;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 32px;
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
+}
+
+.hero-content,
+.hero-image {
+  width: 100%;
+  max-width: 620px;
+  min-width: 0;
+}
+
+.hero-content {
+  justify-self: end;
+}
+
+/* Adjust this transform if the homepage carousel needs to move up or down. */
+.hero-image {
+  transform: translateY(0);
+}
+
+.hero h1 {
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  margin-bottom: 28px;
+}
+
+.hero-text {
+  max-width: 560px;
+  font-size: 20px;
+  color: #d3d3d3;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* HOME / Hero carousel
+   Image size is controlled by .hero-image max-width above and aspect-ratio here. */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 5 / 4;
+  border-radius: 0;
+  overflow: hidden;
+  background: var(--black);
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-footer {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-caption {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  text-align: center;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.carousel-arrow {
+  width: 32px;
+  height: 32px;
+  padding: 2px 6px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.carousel-arrow:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+}
+
+.dot.active {
+  background: var(--white);
+}
+
+/* ==========================================================================
+   RESEARCH section
+   Research-specific layout only. Global section/header/card styles stay intact.
+   ========================================================================== */
+.research-intro {
+  /* Match the shared section content width instead of forming a narrow,
+     centered text column. */
+  max-width: var(--max-width);
+  color: var(--gray-500);
+  font-size: 20px;
+  line-height: 1.62;
+  margin-bottom: 72px;
+}
+
+/* ==========================================================================
+   ABOUT section
+   Portrait, biography, education/experience, and profile links.
+   ========================================================================== */
+.pi-profile {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 64px);
+  align-items: start;
+}
+
+.pi-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--gray-200);
+}
+
+.pi-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pi-info h3 {
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 18px;
+}
+
+.pi-bio {
+  max-width: 820px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+/* Education / Experience: one line per entry, dates at the end. */
+.cv-heading {
+  font-size: 17px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.cv-lines p {
+  color: var(--gray-500);
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+/* Icon links under the portrait: Email, Google Scholar, CV. */
+.profile-links {
+  list-style: none;
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--gray-800);
+  transition: color 0.2s ease;
+}
+
+.profile-links a:hover {
+  color: var(--black);
+}
+
+.profile-links svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Optional tag style for future team/research labels. */
+.research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.research-tags span {
+  padding: 8px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  background: var(--gray-100);
+  font-size: 13px;
+  color: var(--gray-800);
+}
+
+/* ==========================================================================
+   PUBLICATIONS section
+   Add new publications in index.html inside .publication-list.
+   ========================================================================== */
+.publication-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--gray-200);
+}
+
+.publication {
+  display: grid;
+  grid-template-columns: 50px 1fr 150px;
+  gap: 30px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--gray-200);
+  align-items: start;
+}
+
+/* Temporarily hidden publications. Remove this class in index.html to show them again. */
+.publication-hidden {
+  display: none;
+}
+
+.pub-number {
+  padding-top: 17px;
+  font-size: 16px;
+  color: var(--gray-500);
+  letter-spacing: 0.08em;
+}
+
+.pub-image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--white);
+  align-self: center;
+}
+
+.pub-image-container img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.pub-content {
+  padding-top: 17px;
+  padding-bottom: 17px;
+}
+
+.pub-content h3 {
+  max-width: 880px;
+  font-size: 18px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.pub-meta {
+  font-size: 16px;
+  color: var(--gray-500);
+  margin-bottom: 10px;
+  line-height: 1.8;
+}
+
+.author-highlight {
+  font-weight: 500;
+  color: var(--black);
+}
+
+.journal-name {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.pub-note {
+  max-width: 760px;
+  font-size: 16px;
+  color: var(--gray-500);
+  margin-bottom: 10px;
+}
+
+.pub-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.pub-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  border-bottom: 1px solid var(--black);
+}
+
+/* ==========================================================================
+   Shared subsection titles (Research, Publications, Media & Recognition)
+   ========================================================================== */
+.subsection-title {
+  font-size: 28px;
+  letter-spacing: -0.035em;
+  margin-top: 72px;
+  margin-bottom: 28px;
+}
+
+.subsection-title.first {
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   RESEARCH / Overview figures (Past Research, Future Directions)
+   ========================================================================== */
+.research-figure {
+  margin-bottom: 48px;
+}
+
+.research-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==========================================================================
+   RESEARCH / Selected past work
+   ========================================================================== */
+.past-work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 22px;
+}
+
+/* Each card spans three rows of the parent grid (title, text, venue/funding)
+   so those rows line up across columns. */
+.past-work {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  row-gap: 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--black);
+}
+
+.past-work h4 {
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.past-work p {
+  color: var(--gray-500);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.past-work .past-work-venue {
+  padding-top: 16px;
+  color: var(--black);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.past-work .venue-label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--gray-500);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   PUBLICATIONS / extras: key line, earlier-work toggle, patents
+   ========================================================================== */
+.pub-key {
+  color: var(--gray-500);
+  font-size: 14px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.publication-earlier {
+  display: none;
+  grid-template-columns: 50px 1fr;
+}
+
+.publication-list.show-earlier .publication-earlier {
+  display: grid;
+}
+
+.earlier-toggle {
+  display: block;
+  margin-top: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--black);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.simple-list {
+  border-top: 1px solid var(--gray-200);
+}
+
+.simple-list p {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-500);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   MEDIA & RECOGNITION section
+   ========================================================================== */
+.record-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--gray-200);
+}
+
+.record-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.record-item > span {
+  color: var(--gray-500);
+  font-size: 14px;
+  padding-top: 2px;
+}
+
+.record-title {
+  font-size: 17px;
+  color: var(--black);
+}
+
+.record-detail {
+  margin-top: 4px;
+  font-size: 16px;
+  color: var(--gray-500);
+}
+
+.record-detail a {
+  border-bottom: 1px solid var(--gray-200);
+  transition: border-color 0.2s ease;
+}
+
+.record-detail a:hover {
+  border-color: var(--black);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  padding: 38px 24px;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 14px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.footer .footer-note {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #a0a0a0;
+}
+
+/* ==========================================================================
+   Responsive layout
+   Keep mobile overrides together so page-specific desktop settings stay easy
+   to find above, and small-screen behavior is easy to audit here.
+   ========================================================================== */
+@media (max-width: 850px) {
+  /* Keep the section full-width on mobile, matching the desktop structure. */
+  .section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Direct section content controls the page margin at every screen size:
+     24px on desktop and 48px on mobile. */
+  .section > * {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    left: 20px;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(5, 5, 5, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 15px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 130px 18px 72px;
+  }
+
+  .hero-content {
+    justify-self: start;
+  }
+
+  .hero-image,
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    justify-self: stretch;
+  }
+
+  .hero-carousel {
+    height: auto;
+    max-height: 360px;
+    aspect-ratio: 5 / 4;
+  }
+
+  .hero-text {
+    font-size: 18px;
+  }
+
+  .research-intro {
+    font-size: 18px;
+    margin-bottom: 46px;
+  }
+
+
+  .pi-profile {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .pi-photo {
+    max-width: 180px;
+  }
+
+  .profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 18px;
+  }
+
+
+  .publication {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .pub-image-container {
+    max-width: 220px;
+    margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .past-work-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .past-work {
+    margin-bottom: 34px;
+  }
+
+  .title-break {
+    display: none;
+  }
+
+  .subsection-title {
+    font-size: 24px;
+    margin-top: 56px;
+  }
+
+  .record-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+}
